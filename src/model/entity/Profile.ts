@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
 import { UserRole } from "../enums/user-role";
+import { CompletedChallenge } from "./DesafioCompletado";
 import { User } from "./User";
 
 
@@ -38,4 +39,5 @@ export class Profile {
     @OneToOne( () => User,{cascade : true})
     @JoinColumn({name: "user_id"})
     user: User;
+
 }
