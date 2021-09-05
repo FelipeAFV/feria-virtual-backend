@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
-import { Representative } from "./Apoderado";
+import { Representative } from "./Representative";
 import { Profile } from "./Profile";
 
 
