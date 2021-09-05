@@ -12,7 +12,7 @@ export class Video{
     @Column({name: "video_url"})
     url: string;
 
-    @ManyToOne(()=>Stand,Stand=>Stand.video)
+    @ManyToOne(()=>Stand,Stand=>Stand.videos)
     @JoinColumn({name:"stand_id"})
     stand: Stand;
 

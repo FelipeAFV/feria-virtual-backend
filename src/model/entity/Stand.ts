@@ -24,5 +24,5 @@ export class Stand{
     challenge: Challenge;
 
     @OneToMany(()=> Video, Video=> Video.stand)
-    video: Video
+    videos: Video[];
 }
