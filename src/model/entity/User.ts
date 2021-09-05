@@ -1,5 +1,6 @@
 
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn , Unique} from "typeorm";
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
+import { Profile } from "./Profile";
 
 
 
@@ -16,6 +17,9 @@ export class User {
     @Column({name: "password"})
     //@MinLength(8)
     password: string;
+
+    @OneToOne(() => Profile, profile => profile.user )
+    profile: Profile;
 
 
 }
