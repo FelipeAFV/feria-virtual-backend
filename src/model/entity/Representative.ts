@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
 import { Profile } from "./Profile";
-import {Student} from "./Alumno";
+import {Student} from "./Student";
 
 
 
