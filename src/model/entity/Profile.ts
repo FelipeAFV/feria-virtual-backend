@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
 import { UserRole } from "../enums/user-role";
-import { CompletedChallenge } from "./DesafioCompletado";
+import { ChallengeComplete } from "./ChallengeComplete";
 import { User } from "./User";
 
 

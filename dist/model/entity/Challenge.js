@@ -9,28 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Video = void 0;
+exports.Challenge = void 0;
 var typeorm_1 = require("typeorm");
+var ChallengeComplete_1 = require("./ChallengeComplete");
 var Stand_1 = require("./Stand");
-var Video = /** @class */ (function () {
-    function Video() {
+var Challenge = /** @class */ (function () {
+    function Challenge() {
     }
     __decorate([
-        (0, typeorm_1.PrimaryGeneratedColumn)({ name: "video_id" }),
+        (0, typeorm_1.PrimaryGeneratedColumn)({ name: "challenge_id" }),
         __metadata("design:type", Number)
-    ], Video.prototype, "id", void 0);
+    ], Challenge.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ name: "video_url" }),
+        (0, typeorm_1.Column)({ name: "url_video" }),
         __metadata("design:type", String)
-    ], Video.prototype, "url", void 0);
+    ], Challenge.prototype, "url_video", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return Stand_1.Stand; }, function (Stand) { return Stand.videos; }),
+        (0, typeorm_1.OneToMany)(function () { return ChallengeComplete_1.ChallengeComplete; }, function (ChallengeComplete) { return ChallengeComplete.challenges; }),
+        __metadata("design:type", ChallengeComplete_1.ChallengeComplete)
+    ], Challenge.prototype, "challengeComplete", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Stand_1.Stand; }, function (stand) { return stand.challenge; }),
         (0, typeorm_1.JoinColumn)({ name: "stand_id" }),
-        __metadata("design:type", Stand_1.Stand)
-    ], Video.prototype, "stand", void 0);
-    Video = __decorate([
-        (0, typeorm_1.Entity)("stand")
-    ], Video);
-    return Video;
+        __metadata("design:type", Challenge)
+    ], Challenge.prototype, "challenges", void 0);
+    Challenge = __decorate([
+        (0, typeorm_1.Entity)("challenge")
+    ], Challenge);
+    return Challenge;
 }());
-exports.Video = Video;
+exports.Challenge = Challenge;
