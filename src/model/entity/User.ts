@@ -4,7 +4,7 @@ import { Profile } from "./Profile";
 
 
 
-@Entity("user")
+@Entity({name:"user"})
 export class User {
 
     @PrimaryGeneratedColumn({name: "user_id"})
