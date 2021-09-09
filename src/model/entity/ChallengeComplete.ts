@@ -4,7 +4,7 @@ import { Profile } from "./Profile";
 
 
 
-@Entity("challenge_complete")
+@Entity({name:"challenge_complete"})
 export class ChallengeComplete {
 
     @PrimaryGeneratedColumn({name: "challenge_complete_id"})

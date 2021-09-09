@@ -4,7 +4,7 @@ import {Stand} from "./Stand"
 
 
 
-@Entity("challenge")
+@Entity({name:"challenge"})
 export class Challenge {
 
     @PrimaryGeneratedColumn({name: "challenge_id"})
@@ -19,5 +19,5 @@ export class Challenge {
 
     @ManyToOne(()=>Stand, stand=>stand.challenge)
     @JoinColumn({name:"stand_id"})
-    challenges: Challenge;
+    stand: Stand;
 }
