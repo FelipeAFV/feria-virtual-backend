@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 class AuthController {
 
-    signUp = () => {
+    signUp = (req: Request, res: Response) => {
 
     }
 

@@ -35,10 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var passport_1 = __importDefault(require("passport"));
 var passport_jwt_1 = require("passport-jwt");
-var typeorm_1 = require("typeorm");
-var User_1 = require("../model/entity/User");
 /**
  * Extraer token de una cookie
  */
@@ -54,30 +56,23 @@ var options = {
 /**
  * Passport se encarga de revisar el jwt
  */
-var strategy = new passport_jwt_1.Strategy(options, function (payload, done) { return __awaiter(void 0, void 0, void 0, function () {
-    var userRepo, user;
+var jwtStrategy = new passport_jwt_1.Strategy(options, function (payload, done) { return __awaiter(void 0, void 0, void 0, function () {
+    var user;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                userRepo = (0, typeorm_1.getRepository)(User_1.User);
-                return [4 /*yield*/, userRepo.findOne(payload.userId)];
-            case 1:
-                user = _a.sent();
-                if (!user) {
-                    return [2 /*return*/, done('An error has ocurred', false)];
-                }
-                if (user) {
-                    return [2 /*return*/, done(null, user)];
-                }
-                else {
-                    return [2 /*return*/, done(null, false)];
-                    // or you could create a new account
-                }
-                return [2 /*return*/];
+        user = {
+            username: 'Felipe'
+        };
+        if (!user) {
+            return [2 /*return*/, done('An error has ocurred', false)];
         }
+        if (user) {
+            return [2 /*return*/, done(null, user)];
+        }
+        else {
+            return [2 /*return*/, done(null, false)];
+            // or you could create a new account
+        }
+        return [2 /*return*/];
     });
 }); });
-function config(passport) {
-    passport.use(strategy);
-}
-exports.default = config;
+passport_1.default.use(jwtStrategy);

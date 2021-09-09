@@ -1,8 +1,8 @@
 
 import { Request } from "express";
-import { Authenticator } from "passport";
+import passport, { Authenticator } from "passport";
 import { ExtractJwt, Strategy as JwtStrategy, StrategyOptions } from "passport-jwt";
-import { getRepository } from "typeorm";
+// import { getRepository } from "typeorm";
 import { User } from "../model/entity/User";
 
 /**
@@ -24,9 +24,12 @@ const options: StrategyOptions = {
 /**
  * Passport se encarga de revisar el jwt
  */
-const strategy : JwtStrategy = new JwtStrategy(options, async (payload, done) => {
-    const userRepo = getRepository(User);
-    const user : User | undefined = await userRepo.findOne(payload.userId);
+const jwtStrategy : JwtStrategy = new JwtStrategy(options, async (payload, done) => {
+    // const userRepo = getRepository(User);
+    // const user : User | undefined = await userRepo.findOne(payload.userId);
+    const user = {
+        username: 'Felipe'
+    }
     if (!user) {
         return done('An error has ocurred', false);
     }
@@ -38,6 +41,4 @@ const strategy : JwtStrategy = new JwtStrategy(options, async (payload, done) =>
     }
 });
 
-export default function config(passport: Authenticator)   {
-    passport.use(strategy);
-}
+passport.use(jwtStrategy);
