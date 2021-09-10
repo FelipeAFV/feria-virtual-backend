@@ -31,10 +31,10 @@ var Challenge = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return Stand_1.Stand; }, function (stand) { return stand.challenge; }),
         (0, typeorm_1.JoinColumn)({ name: "stand_id" }),
-        __metadata("design:type", Challenge)
-    ], Challenge.prototype, "challenges", void 0);
+        __metadata("design:type", Stand_1.Stand)
+    ], Challenge.prototype, "stand", void 0);
     Challenge = __decorate([
-        (0, typeorm_1.Entity)("challenge")
+        (0, typeorm_1.Entity)({ name: "challenge" })
     ], Challenge);
     return Challenge;
 }());

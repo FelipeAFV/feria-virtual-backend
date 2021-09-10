@@ -33,7 +33,7 @@ var Stand = /** @class */ (function () {
         __metadata("design:type", String)
     ], Stand.prototype, "image_background", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return Challenge_1.Challenge; }, function (Challenge) { return Challenge.challenges; }),
+        (0, typeorm_1.OneToMany)(function () { return Challenge_1.Challenge; }, function (Challenge) { return Challenge.stand; }),
         __metadata("design:type", Challenge_1.Challenge)
     ], Stand.prototype, "challenge", void 0);
     __decorate([
@@ -41,7 +41,7 @@ var Stand = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Stand.prototype, "videos", void 0);
     Stand = __decorate([
-        (0, typeorm_1.Entity)("stand")
+        (0, typeorm_1.Entity)({ name: "stand" })
     ], Stand);
     return Stand;
 }());

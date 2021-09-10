@@ -32,7 +32,7 @@ var User = /** @class */ (function () {
         __metadata("design:type", Profile_1.Profile)
     ], User.prototype, "profile", void 0);
     User = __decorate([
-        (0, typeorm_1.Entity)("user")
+        (0, typeorm_1.Entity)({ name: "user" })
     ], User);
     return User;
 }());
