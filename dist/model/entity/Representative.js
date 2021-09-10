@@ -34,7 +34,11 @@ var Representative = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Representative.prototype, "students", void 0);
     Representative = __decorate([
+<<<<<<< HEAD
         (0, typeorm_1.Entity)("representative")
+=======
+        (0, typeorm_1.Entity)({ name: "representative" })
+>>>>>>> master
     ], Representative);
     return Representative;
 }());

@@ -4,7 +4,7 @@ import { Video } from "./Video";
 
 
 
-@Entity("stand")
+@Entity({name:"stand"})
 export class Stand{
 
     @PrimaryGeneratedColumn({name: "stand_id"})
@@ -20,7 +20,7 @@ export class Stand{
     image_background: string;
     
 
-    @OneToMany( () => Challenge, Challenge => Challenge.challenges)
+    @OneToMany( () => Challenge, Challenge => Challenge.stand)
     challenge: Challenge;
 
     @OneToMany(()=> Video, Video=> Video.stand)

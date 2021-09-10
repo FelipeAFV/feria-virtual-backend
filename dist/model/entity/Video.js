@@ -29,7 +29,11 @@ var Video = /** @class */ (function () {
         __metadata("design:type", Stand_1.Stand)
     ], Video.prototype, "stand", void 0);
     Video = __decorate([
+<<<<<<< HEAD
         (0, typeorm_1.Entity)("stand")
+=======
+        (0, typeorm_1.Entity)({ name: "video" })
+>>>>>>> master
     ], Video);
     return Video;
 }());

@@ -33,7 +33,11 @@ var Profesor = /** @class */ (function () {
         __metadata("design:type", Profile_1.Profile)
     ], Profesor.prototype, "profile", void 0);
     Profesor = __decorate([
+<<<<<<< HEAD
         (0, typeorm_1.Entity)("profesor")
+=======
+        (0, typeorm_1.Entity)({ name: "profesor" })
+>>>>>>> master
     ], Profesor);
     return Profesor;
 }());

@@ -3,7 +3,7 @@ import { Stand } from "./Stand";
 
 
 
-@Entity("stand")
+@Entity({name:"video"})
 export class Video{
 
     @PrimaryGeneratedColumn({name: "video_id"})

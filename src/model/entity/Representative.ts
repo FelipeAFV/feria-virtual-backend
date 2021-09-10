@@ -4,7 +4,7 @@ import {Student} from "./Student";
 
 
 
-@Entity("representative")
+@Entity({name:"representative"})
 export class Representative {
 
     @PrimaryGeneratedColumn({name: "representative_id"})
