@@ -52,16 +52,12 @@ var Profile = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profile.prototype, "role", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, { cascade: true }),
+        (0, typeorm_1.OneToOne)(function () { return User_1.User; }, { cascade: false }),
         (0, typeorm_1.JoinColumn)({ name: "user_id" }),
         __metadata("design:type", User_1.User)
     ], Profile.prototype, "user", void 0);
     Profile = __decorate([
-<<<<<<< HEAD
-        (0, typeorm_1.Entity)("profile")
-=======
         (0, typeorm_1.Entity)({ name: "profile" })
->>>>>>> master
     ], Profile);
     return Profile;
 }());

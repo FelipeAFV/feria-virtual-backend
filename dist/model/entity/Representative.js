@@ -23,9 +23,9 @@ var Representative = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({ name: "child_number" }),
         __metadata("design:type", Number)
-    ], Representative.prototype, "child_number", void 0);
+    ], Representative.prototype, "childNumber", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: true }),
+        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: false }),
         (0, typeorm_1.JoinColumn)({ name: "profile_id" }),
         __metadata("design:type", Profile_1.Profile)
     ], Representative.prototype, "profile", void 0);
@@ -34,11 +34,7 @@ var Representative = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Representative.prototype, "students", void 0);
     Representative = __decorate([
-<<<<<<< HEAD
-        (0, typeorm_1.Entity)("representative")
-=======
         (0, typeorm_1.Entity)({ name: "representative" })
->>>>>>> master
     ], Representative);
     return Representative;
 }());

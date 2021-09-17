@@ -29,7 +29,7 @@ var Student = /** @class */ (function () {
         __metadata("design:type", String)
     ], Student.prototype, "grade", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: true }),
+        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: false }),
         (0, typeorm_1.JoinColumn)({ name: "profile_id" }),
         __metadata("design:type", Profile_1.Profile)
     ], Student.prototype, "profile", void 0);
@@ -38,11 +38,7 @@ var Student = /** @class */ (function () {
         __metadata("design:type", Representative_1.Representative)
     ], Student.prototype, "representative", void 0);
     Student = __decorate([
-<<<<<<< HEAD
-        (0, typeorm_1.Entity)("student")
-=======
         (0, typeorm_1.Entity)({ name: "student" })
->>>>>>> master
     ], Student);
     return Student;
 }());

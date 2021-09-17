@@ -1,18 +1,20 @@
 
 import { Request } from "express";
-import passport, { Authenticator } from "passport";
 import { ExtractJwt, Strategy as JwtStrategy, StrategyOptions } from "passport-jwt";
-// import { getRepository } from "typeorm";
+import { getRepository } from "typeorm";
 import { User } from "../model/entity/User";
 
 /**
  * Extraer token de una cookie
  */
 const stractMethod = (req: Request) => {
-    let token = '';
-    req.cookies['jwt'];
-
-    return req.cookies['jwt'];
+    
+    let token = null;
+    if (req && req.cookies['jwt']) {
+        token = req.cookies['jwt'];
+    }
+    console.log('Token', token);
+    return token;
 }
 
 const options: StrategyOptions = {
@@ -24,21 +26,29 @@ const options: StrategyOptions = {
 /**
  * Passport se encarga de revisar el jwt
  */
-const jwtStrategy : JwtStrategy = new JwtStrategy(options, async (payload, done) => {
-    // const userRepo = getRepository(User);
-    // const user : User | undefined = await userRepo.findOne(payload.userId);
-    const user = {
-        username: 'Felipe'
-    }
-    if (!user) {
-        return done('An error has ocurred', false);
-    }
-    if (user) {
-        return done(null, user);
-    } else {
-        return done(null, false);
-        // or you could create a new account
-    }
+const jwtStrategy : JwtStrategy = new JwtStrategy(options,  (payload, done) => {
+    const userRepo = getRepository(User);
+    console.log(payload, ' payload');
+    return userRepo.findOne(payload.userId)
+        .then( (user) => {
+
+            if (user) {
+                return done(null, user);
+            } else  {
+                return done('null', false);
+            } 
+
+        })
+        .catch( (err) => {
+            return done(err, null);
+        });
+    
 });
 
-passport.use(jwtStrategy);
+const configure = (passport: any) => {
+    passport.use(jwtStrategy);
+}
+
+export default configure;
+
+// passport.use(jwtStrategy);

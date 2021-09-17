@@ -1,10 +1,11 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn , Unique} from "typeorm";
+import { Role } from "../interface/role";
 import { Profile } from "./Profile";
 
 
 
 @Entity({name:"profesor"})
-export class Profesor {
+export class Profesor implements Role {
 
     @PrimaryGeneratedColumn({name: "profesor_id"})
     id: number;
@@ -15,7 +16,7 @@ export class Profesor {
     @Column({name: "subject"})
     subject: string;
 
-    @OneToOne( () => Profile,{cascade : true})
+    @OneToOne( () => Profile,{cascade : false})
     @JoinColumn({name: "profile_id"})
     profile: Profile;
 }

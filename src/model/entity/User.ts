@@ -19,7 +19,7 @@ export class User {
     password: string;
 
     @OneToOne(() => Profile, profile => profile.user )
-    profile: Profile;
+    profile?: Profile;
 
 
 }

@@ -1,13 +1,9 @@
 import { compare, hash} from "bcrypt";
 
-export async function encrypt(plainPassword: string): Promise<string | undefined> {
+export async function encrypt(plainPassword: string): Promise<string> {
     let encryptedPassword = await hash(plainPassword, 10);
+    return encryptedPassword;
 
-    if (encryptedPassword) {
-        return encryptedPassword;
-    } else {
-        return undefined;
-    }
 }
 
 

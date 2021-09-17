@@ -42,11 +42,7 @@ var ChallengeComplete = /** @class */ (function () {
         __metadata("design:type", Array)
     ], ChallengeComplete.prototype, "challenges", void 0);
     ChallengeComplete = __decorate([
-<<<<<<< HEAD
-        (0, typeorm_1.Entity)("challenge_complete")
-=======
         (0, typeorm_1.Entity)({ name: "challenge_complete" })
->>>>>>> master
     ], ChallengeComplete);
     return ChallengeComplete;
 }());

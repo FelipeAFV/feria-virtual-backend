@@ -28,16 +28,12 @@ var Profesor = /** @class */ (function () {
         __metadata("design:type", String)
     ], Profesor.prototype, "subject", void 0);
     __decorate([
-        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: true }),
+        (0, typeorm_1.OneToOne)(function () { return Profile_1.Profile; }, { cascade: false }),
         (0, typeorm_1.JoinColumn)({ name: "profile_id" }),
         __metadata("design:type", Profile_1.Profile)
     ], Profesor.prototype, "profile", void 0);
     Profesor = __decorate([
-<<<<<<< HEAD
-        (0, typeorm_1.Entity)("profesor")
-=======
         (0, typeorm_1.Entity)({ name: "profesor" })
->>>>>>> master
     ], Profesor);
     return Profesor;
 }());

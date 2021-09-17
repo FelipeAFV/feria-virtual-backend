@@ -36,7 +36,7 @@ export class Profile {
     })
     role: UserRole;
 
-    @OneToOne( () => User,{cascade : true})
+    @OneToOne( () => User,{cascade : false})
     @JoinColumn({name: "user_id"})
     user: User;
 
