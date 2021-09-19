@@ -30,6 +30,11 @@ var passport_1 = __importDefault(require("passport"));
 var passport_2 = __importDefault(require("./config/passport"));
 var auth_router_1 = __importDefault(require("./routes/auth.router"));
 var cors_1 = __importDefault(require("cors"));
+(0, typeorm_1.createConnection)()
+    .then(function (connection) {
+    // here you can start to work with your entities
+    console.log('Connection successful');
+}).catch(function (error) { return console.log(error); });
 (0, passport_2.default)(passport_1.default);
 passport_1.default.initialize();
 var app = (0, express_1.default)();
@@ -47,8 +52,3 @@ app.use('/protected', passport_1.default.authenticate('jwt', { session: false })
     res.json('Response');
 });
 app.listen(3000);
-(0, typeorm_1.createConnection)()
-    .then(function (connection) {
-    // here you can start to work with your entities
-    console.log('Connection successful');
-}).catch(function (error) { return console.log(error); });

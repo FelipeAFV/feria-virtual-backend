@@ -13,15 +13,18 @@ export const roleGenerator = (profile: Profile, roleData: any): Role | undefined
     switch (role) {
         case UserRole.ALUMNO:
             // const student: Student = roleData;
-            const student: Student = { id: 1, school: roleData.school, grade: roleData.grade, profile: profile};
+            const student: Student = roleData
+            student.profile = profile;
             userRole = student;
             break;
         case UserRole.APODERADO:
-            const representative: Representative = { id: 1, childNumber: roleData.childNumber, profile: profile};
+            const representative: Representative = roleData;
+            representative.profile = profile;
             userRole = representative;
             break;
         case UserRole.PROFESOR:
-            const professor: Profesor = {id: 1, school: roleData.school, subject: roleData.subject, profile: profile};
+            const professor: Profesor = roleData;
+            professor.profile = profile;
             userRole = professor;
             break;
     

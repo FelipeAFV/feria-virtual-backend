@@ -16,11 +16,11 @@ class AuthController {
     
     
     signUp = async (req: Request, res: Response) => {
-        // const userRepo = getRepository(User);
+        const userRepo = getRepository(User);
 
         console.log(req.body);
         const {username, password} = req.body;
-        const userToCheck = await getRepository(User).findOne({username: username});
+        const userToCheck = await userRepo.findOne({username: username});
         
         if (userToCheck) {
             return res.status(400).json({error: 'Username already exist'})
@@ -28,27 +28,35 @@ class AuthController {
         
         /**Creación de usuario */
         const hashedPass =  await encrypt(password);
-        const user: User = {
-            id: 1,
-            username: username,
-            password: hashedPass,
-        }
+        const user: User = new User();
+
+        user.username = username;
+        user.password = password;
+
 
         /** Creacion de profile */
         const profile: Profile = req.body;
-        profile.id = 1; 
-        profile.user = user;
+
         
-
-        /** Creacion de rol */
-        const role: Role | undefined = roleGenerator(profile, req.body);
         
-
-
+        
         console.log('Profile a crear ', profile);
         
-        const insertedUser: User = await getRepository(User).save(user);
+        let users = await userRepo.find();
+        console.log('Todos usuarios 1 ', users.length);
+        
+        const insertedUser: User = await userRepo.save(user);
+        
+        users = await userRepo.find();
+        console.log('Todos usuarios 2 ', users.length);
+        
+        
+        profile.user = insertedUser;
         const insertedProfile: Profile = await getRepository(Profile).save(profile);
+        
+        /** Creacion de rol */
+        const role: Role | undefined = roleGenerator(insertedProfile, req.body);
+        
 
         if (role) {
             let insertedRole;

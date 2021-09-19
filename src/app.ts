@@ -7,6 +7,12 @@ import configure from "./config/passport";
 import authRoutes from "./routes/auth.router";
 import cors from "cors";
 
+createConnection()
+    .then(connection => {
+    // here you can start to work with your entities
+    console.log('Connection successful')
+}).catch(error => console.log(error));
+
 configure(passport);
 passport.initialize();
 
@@ -34,8 +40,3 @@ app.listen(3000);
 
 
 
-createConnection()
-    .then(connection => {
-    // here you can start to work with your entities
-    console.log('Connection successful')
-}).catch(error => console.log(error));

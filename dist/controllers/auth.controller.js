@@ -53,14 +53,14 @@ var AuthController = /** @class */ (function () {
     function AuthController() {
         var _this = this;
         this.signUp = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var _a, username, password, userToCheck, hashedPass, user, profile, role, insertedUser, insertedProfile, insertedRole, _b;
+            var userRepo, _a, username, password, userToCheck, hashedPass, user, profile, users, insertedUser, insertedProfile, role, insertedRole, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        // const userRepo = getRepository(User);
+                        userRepo = (0, typeorm_1.getRepository)(User_1.User);
                         console.log(req.body);
                         _a = req.body, username = _a.username, password = _a.password;
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(User_1.User).findOne({ username: username })];
+                        return [4 /*yield*/, userRepo.findOne({ username: username })];
                     case 1:
                         userToCheck = _c.sent();
                         if (userToCheck) {
@@ -69,44 +69,49 @@ var AuthController = /** @class */ (function () {
                         return [4 /*yield*/, (0, password_encrypt_1.encrypt)(password)];
                     case 2:
                         hashedPass = _c.sent();
-                        user = {
-                            id: 1,
-                            username: username,
-                            password: hashedPass,
-                        };
+                        user = new User_1.User();
+                        user.username = username;
+                        user.password = password;
                         profile = req.body;
-                        profile.id = 1;
-                        profile.user = user;
-                        role = (0, role_utils_1.roleGenerator)(profile, req.body);
                         console.log('Profile a crear ', profile);
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(User_1.User).save(user)];
+                        return [4 /*yield*/, userRepo.find()];
                     case 3:
-                        insertedUser = _c.sent();
-                        return [4 /*yield*/, (0, typeorm_1.getRepository)(Profile_1.Profile).save(profile)];
+                        users = _c.sent();
+                        console.log('Todos usuarios 1 ', users.length);
+                        return [4 /*yield*/, userRepo.save(user)];
                     case 4:
+                        insertedUser = _c.sent();
+                        return [4 /*yield*/, userRepo.find()];
+                    case 5:
+                        users = _c.sent();
+                        console.log('Todos usuarios 2 ', users.length);
+                        profile.user = insertedUser;
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(Profile_1.Profile).save(profile)];
+                    case 6:
                         insertedProfile = _c.sent();
-                        if (!role) return [3 /*break*/, 11];
+                        role = (0, role_utils_1.roleGenerator)(insertedProfile, req.body);
+                        if (!role) return [3 /*break*/, 13];
                         insertedRole = void 0;
                         _b = profile.role;
                         switch (_b) {
-                            case user_role_1.UserRole.ALUMNO: return [3 /*break*/, 5];
-                            case user_role_1.UserRole.APODERADO: return [3 /*break*/, 7];
-                            case user_role_1.UserRole.PROFESOR: return [3 /*break*/, 9];
+                            case user_role_1.UserRole.ALUMNO: return [3 /*break*/, 7];
+                            case user_role_1.UserRole.APODERADO: return [3 /*break*/, 9];
+                            case user_role_1.UserRole.PROFESOR: return [3 /*break*/, 11];
                         }
-                        return [3 /*break*/, 11];
-                    case 5: return [4 /*yield*/, (0, typeorm_1.getRepository)(Student_1.Student).save(role)];
-                    case 6:
-                        insertedRole = _c.sent();
-                        return [3 /*break*/, 11];
-                    case 7: return [4 /*yield*/, (0, typeorm_1.getRepository)(Representative_1.Representative).save(role)];
+                        return [3 /*break*/, 13];
+                    case 7: return [4 /*yield*/, (0, typeorm_1.getRepository)(Student_1.Student).save(role)];
                     case 8:
                         insertedRole = _c.sent();
-                        return [3 /*break*/, 11];
-                    case 9: return [4 /*yield*/, (0, typeorm_1.getRepository)(Profesor_1.Profesor).save(role)];
+                        return [3 /*break*/, 13];
+                    case 9: return [4 /*yield*/, (0, typeorm_1.getRepository)(Representative_1.Representative).save(role)];
                     case 10:
                         insertedRole = _c.sent();
-                        return [3 /*break*/, 11];
-                    case 11:
+                        return [3 /*break*/, 13];
+                    case 11: return [4 /*yield*/, (0, typeorm_1.getRepository)(Profesor_1.Profesor).save(role)];
+                    case 12:
+                        insertedRole = _c.sent();
+                        return [3 /*break*/, 13];
+                    case 13:
                         res.cookie('jwt', jsonwebtoken_1.default.sign({ userId: insertedUser.id }, 'SECRET'), { httpOnly: true });
                         return [2 /*return*/, res.status(200).json({ success: 'Successfully registered' })];
                 }
