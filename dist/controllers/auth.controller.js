@@ -71,7 +71,7 @@ var AuthController = /** @class */ (function () {
                         hashedPass = _c.sent();
                         user = new User_1.User();
                         user.username = username;
-                        user.password = password;
+                        user.password = hashedPass;
                         profile = req.body;
                         console.log('Profile a crear ', profile);
                         return [4 /*yield*/, userRepo.find()];

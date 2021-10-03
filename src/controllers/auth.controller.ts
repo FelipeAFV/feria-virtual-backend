@@ -31,7 +31,7 @@ class AuthController {
         const user: User = new User();
 
         user.username = username;
-        user.password = password;
+        user.password = hashedPass;
 
 
         /** Creacion de profile */
