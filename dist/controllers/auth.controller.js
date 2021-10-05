@@ -143,6 +143,31 @@ var AuthController = /** @class */ (function () {
                 }
             });
         }); };
+        this.forgotPassword = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            var email, user, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        email = req.body.email;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, (0, typeorm_1.getRepository)(User_1.User).createQueryBuilder('user')
+                                .innerJoinAndSelect('user.profile', 'profile')
+                                .where('profile.email = :email', { email: email })
+                                .getOne()];
+                    case 2:
+                        user = _a.sent();
+                        console.log(user);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _a.sent();
+                        res.status(400).json(error_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        }); };
     }
     return AuthController;
 }());

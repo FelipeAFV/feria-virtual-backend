@@ -18,8 +18,8 @@ export class User {
     //@MinLength(8)
     password: string;
 
-    @OneToOne(() => Profile, profile => profile.user )
-    profile?: Profile;
+    @OneToOne(() => Profile, (profile) => profile.user )
+    profile: Profile;
 
 
 }

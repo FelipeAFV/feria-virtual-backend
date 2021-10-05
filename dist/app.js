@@ -51,4 +51,4 @@ app.use('/protected', passport_1.default.authenticate('jwt', { session: false })
     console.log('User', req.user);
     res.json('Response');
 });
-app.listen(3000);
+app.listen(4000);

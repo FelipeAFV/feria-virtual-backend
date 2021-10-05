@@ -36,7 +36,7 @@ app.use('/protected', passport.authenticate('jwt', {session: false}), (req: Requ
     res.json('Response');
 });
 
-app.listen(3000);
+app.listen(4000);
 
 
 
